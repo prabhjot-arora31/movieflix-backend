@@ -49,7 +49,7 @@ app.post("/addmovies", urlEncodedParser, (req, res) => {
       return data1;
     });
     // console.log(mainData.title);
-    res.send("Sended");
+    res.send("Sended<br/><a href='https://movieflix3112.netlify.app'>Go back</a>");
   }
 });
 const port = process.env.PORT || 9002;
