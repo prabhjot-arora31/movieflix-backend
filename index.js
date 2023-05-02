@@ -22,31 +22,38 @@ app.get("/", (req, res) => {
 });
 app.post("/addmovies", urlEncodedParser, (req, res) => {
   const title = req.body.title;
-  const poster_path = req.body.poster_path;
+  poster_path = req.body.poster_path;
   const movies = {
     title: title,
     poster_path: poster_path,
   };
-  console.log(title, poster_path);
-  fs.readFile("./decs.json", function (err, data) {
-    if (err) throw err;
-    var data1 = JSON.parse(data);
-    data1.push(movies);
-    console.log(data1.title);
-    fs.writeFile("./decs.json", JSON.stringify(data1), (err) => {
-      if (err) console.log(err);
-      else {
-        console.log("File written successfully\n");
-        console.log("The written has the following contents:");
-        console.log(fs.readFileSync("abc.txt", "utf8"));
-      }
+  const valu = poster_path.match(/^https?:\/\/.+\/.+$/);
+  console.log("Valu is: ", valu);
+  if (valu === null) {
+    res.send("Error occured while saving the image URL");
+  } else {
+    // console.log(title, poster_path);
+    fs.readFile("./decs.json", function (err, data) {
+      if (err) throw err;
+      var data1 = JSON.parse(data);
+      data1.push(movies);
+      console.log(data1.title);
+      fs.writeFile("./decs.json", JSON.stringify(data1), (err) => {
+        if (err) console.log(err);
+        else {
+          console.log("File written successfully\n");
+          console.log("The written has the following contents:");
+          console.log(fs.readFileSync("abc.json", "utf8"));
+        }
+      });
+      return data1;
     });
-    // return data1;
-  });
-  // console.log(mainData.title);
+    // console.log(mainData.title);
+  }
 
   res.send("Sended");
 });
+const port = process.env.PORT || 9002;
 app.listen(9002, () => {
   console.log("App listening on the port 9002");
 });
