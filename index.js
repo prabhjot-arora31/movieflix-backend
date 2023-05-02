@@ -30,7 +30,7 @@ app.post("/addmovies", urlEncodedParser, (req, res) => {
   const valu = poster_path.match(/^https?:\/\/.+\/.+$/);
   console.log("Valu is: ", valu);
   if (valu === null) {
-    res.send("Error occured while saving the image URL");
+    res.send("<h2 style='margin:0.7rem'>Error occured while saving the image URL</h2><br/><a style='text-decoration:none;margin:0.7rem;font-weight:bold' link='https://movieflix3112.netlify.app'>Go back</a>");
   } else {
     // console.log(title, poster_path);
     fs.readFile("./decs.json", function (err, data) {
@@ -49,7 +49,7 @@ app.post("/addmovies", urlEncodedParser, (req, res) => {
       return data1;
     });
     // console.log(mainData.title);
-    res.send("Sended<br/><a href='https://movieflix3112.netlify.app'>Go back</a>");
+    res.send("<h2 style='margin:0.7rem'>Posted Data Successfully</h2><br/><a style='text-decoration:none;margin:0.7rem' href='https://movieflix3112.netlify.app'>Go back</a>");
   }
 });
 const port = process.env.PORT || 9002;
