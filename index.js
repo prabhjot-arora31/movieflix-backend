@@ -53,6 +53,6 @@ app.post("/addmovies", urlEncodedParser, (req, res) => {
   }
 });
 const port = process.env.PORT || 9002;
-app.listen(9002, () => {
+app.listen(port, () => {
   console.log("App listening on the port 9002");
 });
