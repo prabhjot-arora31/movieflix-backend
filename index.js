@@ -49,9 +49,8 @@ app.post("/addmovies", urlEncodedParser, (req, res) => {
       return data1;
     });
     // console.log(mainData.title);
+    res.send("Sended");
   }
-
-  res.send("Sended");
 });
 const port = process.env.PORT || 9002;
 app.listen(9002, () => {
